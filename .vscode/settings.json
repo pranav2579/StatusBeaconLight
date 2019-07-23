@@ -1,0 +1,7 @@
+{
+    "appService.zipIgnorePattern": [
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/a86c40d9-1ce3-40e3-bc7e-86461e87c89e/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/TeamsStatusBeacon",
+    "appService.deploySubpath": ""
+}
