@@ -152,6 +152,14 @@ app.use('/auth', authRouter);
 app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
 
+// rest api.
+app.get("/usercalender", (req, res, next) => {
+  var num1 = Math.floor(Math.random() * (2));
+  var num2 = Math.floor(Math.random() * (2));
+  var num3 = Math.floor(Math.random() * (2));
+  res.json([num1, num2, num3]);
+ });
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
