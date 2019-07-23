@@ -1,10 +1,14 @@
 <div class="jumbotron">
-  <h1>Node.js Graph Tutorial</h1>
-  <p class="lead">This sample app shows how to use the Microsoft Graph API to access Outlook and OneDrive data from Node.js</p>
+  <h1>Teams Status Beacon </h1>
+      <br>
   {{#if user}}
     <h4>Welcome {{ user.displayName }}!</h4>
-    <p>Use the navigation bar at the top of the page to get started.</p>
+      <br>
+    <p>Click on Calendar on navigation bar at the top to see your appointments</p>
   {{else}}
-    <a href="/auth/signin" class="btn btn-primary btn-large">Click here to sign in</a>
+    <br>
+  <p class="lead"> This app can track your calendar for the day and proactively set your status-beacon light's color to Available (Green), Busy(Red) or About to be busy (Yellow) (i.e. When you have an upcoming meeting in 15 minutes  or less).</p>
+  <p class="lead"> Kindly authorize the app to access to your Calendar's data via below link:</p>
+    <a href="/auth/signin" class="btn btn-primary btn-large">Authorize with AAD Account</a>
   {{/if}}
 </div>

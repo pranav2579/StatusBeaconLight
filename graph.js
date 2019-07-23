@@ -14,7 +14,8 @@ module.exports = {
     const events = await client
       .api('/me/events')
       .select('subject,organizer,start,end')
-      .orderby('createdDateTime DESC')
+      .orderby('end/dateTime DESC')
+      .top(20)
       .get();
   
     return events;
