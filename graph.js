@@ -10,14 +10,23 @@ module.exports = {
 
   getEvents: async function(accessToken) {
     const client = getAuthenticatedClient(accessToken);
-  
+
+//get current date time
+//hardcoding dates right now. This needs to be corrected.
+var dateTime = require('node-datetime');
+var dt = dateTime.create();
+var formatted = dt.format('Y-m-d');
+console.log(formatted);
     const events = await client
-      .api('/me/events')
-      .select('subject,organizer,start,end')
+    .api("/me/calendarview")
+    .query({
+      startdatetime: "2019-07-23T00:00:00.0000000",
+      enddatetime: "2019-07-26T23:00:00.0000000"
+    }).select('subject,organizer,start,end')
       .orderby('end/dateTime DESC')
-      .top(20)
+      .top(50)
       .get();
-  
+  console.log(events);
     return events;
   }
 };
