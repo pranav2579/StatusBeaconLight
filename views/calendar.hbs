@@ -1,4 +1,16 @@
-<h1>Calendar</h1>
+<h1>FIREFLY - Your Availability Status Light for Open Office</h1>
+{{#if user}}
+  <br>
+    <h3>Welcome {{ user.displayName }}!</h3>
+      <br>
+    <p>Your calendar appointments below have been sent to your Firefly Unit. Sit back, relax and continue working without getting interrupted! Your Firefly Unit will also keep tracking your schedule for new/cancelled appointments so we got you covered for updates in your calendar too! </p>
+    <br>
+  {{else}}
+    <br>
+  <p class="lead"> This app can track your calendar for the day and proactively set your status-beacon light's color to Available (Green), Busy(Red) or About to be busy (Yellow) (i.e. When you have an upcoming meeting in 15 minutes  or less).</p>
+  <p class="lead"> Kindly authorize the app to access to your Calendar's data via below link:</p>
+    <a href="/auth/signin" class="btn btn-primary btn-large">Authorize with AAD Account</a>
+  {{/if}}
 <table class="table">
   <thead>
     <tr>
