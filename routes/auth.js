@@ -30,7 +30,7 @@ router.post('/callback',
     )(req,res,next);
   },
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/calendar');
   }
 );
 
