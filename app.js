@@ -169,8 +169,10 @@ app.get("/usercalender", (req, res, next) => {
   var setGreen = false;
   
   if (global.calendarData) {
-    var todayDate = new Date(Date.now());
-    var currentTime = new Date(Date.now());
+    // var todayDate = new Date(Date.now());
+    // var currentTime = new Date(Date.now());
+    var todayDate = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+    var currentTime = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
 
     global.calendarData.value.forEach(element => {
       var currStart = new Date(element.start.dateTime);
