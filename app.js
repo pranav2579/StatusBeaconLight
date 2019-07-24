@@ -19,6 +19,11 @@ var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
 // this in a reliable storage
 var users = {};
 
+// In-memory storage of calender-data
+// For demo purposes only, production apps should store
+// this in a reliable storage
+global.calendarData;
+
 // Passport calls serializeUser and deserializeUser to
 // manage users
 passport.serializeUser(function(user, done) {
@@ -154,11 +159,47 @@ app.use('/users', usersRouter);
 
 // rest api.
 app.get("/usercalender", (req, res, next) => {
-  var num1 = Math.floor(Math.random() * (2));
-  var num2 = Math.floor(Math.random() * (2));
-  var num3 = Math.floor(Math.random() * (2));
-  res.json([num1, num2, num3]);
- });
+  
+  // 1 0 0 = green = default state
+  // 0 1 0 = yellow
+  // 0 0 1 = red
+  
+  var setRed = false;
+  var setYellow = false;
+  var setGreen = false;
+  
+  if (global.calendarData) {
+    var todayDate = new Date(Date.now());
+    var currentTime = new Date(Date.now());
+
+    global.calendarData.value.forEach(element => {
+      var currStart = new Date(element.start.dateTime);
+      var currEnd = new Date(element.end.dateTime);
+      if ((currStart.getDate() == todayDate.getDate())) {
+
+        if (currStart.getTime() < currentTime.getTime() && currEnd.getTime() > currentTime.getTime()) { // in a meeting
+          setRed = true;
+        }
+        else if (currStart.getTime() - currentTime.getTime() > 0 && currStart.getTime() - currentTime.getTime() <= 900000) { // meeting is about to start
+          setYellow = true;
+        }
+        else {
+          setGreen = true;
+        }
+      }
+    });
+  }
+
+  if(setRed) {
+    res.json([0, 0, 1]);  
+  }
+  else if(setYellow) {
+    res.json([0, 1, 0]);
+  }
+  else {
+    res.json([1, 0, 0]);
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

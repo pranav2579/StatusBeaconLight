@@ -38,6 +38,7 @@ console.log(formatted);
     }).select('subject,organizer,start,end')
       .orderby('end/dateTime ASC')
       .top(50)
+      .header('Prefer', 'outlook.timezone="India Standard Time"')
       .get();
   console.log(events);
     return events;
