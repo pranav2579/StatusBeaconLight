@@ -36,7 +36,7 @@ console.log(formatted);
       startdatetime: start,
       enddatetime: end
     }).select('subject,organizer,start,end')
-      .orderby('end/dateTime DESC')
+      .orderby('end/dateTime ASC')
       .top(50)
       .get();
   console.log(events);
