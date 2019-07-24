@@ -16,12 +16,25 @@ module.exports = {
 var dateTime = require('node-datetime');
 var dt = dateTime.create();
 var formatted = dt.format('Y-m-d');
+var datestart = new Date();
+datestart.setHours(5,30,0,0);
+var  start = datestart.toISOString();
+
+dateend = new Date();
+var numberOfDaysToAdd = 5;
+dateend.setDate(dateend.getDate() + numberOfDaysToAdd); 
+dateend.setHours(5,29,59,59);
+var end = dateend.toISOString();
+
+
 console.log(formatted);
     const events = await client
     .api("/me/calendarview")
     .query({
-      startdatetime: "2019-07-23T00:00:00.0000000",
-      enddatetime: "2019-07-26T23:00:00.0000000"
+//      startdatetime: "2019-07-23T00:00:00.0000000",
+//      enddatetime: "2019-07-26T23:59:59.0000000"
+      startdatetime: start,
+      enddatetime: end
     }).select('subject,organizer,start,end')
       .orderby('end/dateTime DESC')
       .top(50)
