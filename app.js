@@ -158,7 +158,7 @@ app.use('/calendar', calendarRouter);
 app.use('/users', usersRouter);
 
 // rest api.
-app.get("/usercalender", (req, res, next) => {
+app.get("/getCurrentAvailability", (req, res, next) => {
   
   // 1 0 0 = green = default state
   // 0 1 0 = yellow
